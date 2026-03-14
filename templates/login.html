@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DarkIQ — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #060810; --card: #0d1117; --border: #1c2233;
+  --accent: #5b8af5; --accent2: #34d399; --text: #e2e8f0; --muted: #64748b;
+}
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Syne', sans-serif; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+/* Grid background */
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px; opacity: 0.4;
+}
+/* Glow blobs */
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 20% 30%, rgba(91,138,245,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 50% 40% at 80% 70%, rgba(52,211,153,0.10) 0%, transparent 70%);
+}
+
+.card {
+  position: relative; z-index: 1;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 48px 44px; width: 420px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+
+.logo { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; }
+.logo-mark {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 800; color: #060810;
+}
+.logo-name { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+.logo-name span { color: var(--accent2); }
+
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.subtitle { font-size: 13px; color: var(--muted); margin-bottom: 28px; font-weight: 400; }
+
+label { display: block; font-size: 11px; font-family: 'DM Mono', monospace;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 6px; margin-top: 18px; }
+label:first-of-type { margin-top: 0; }
+
+input[type=text], input[type=password] {
+  width: 100%; background: var(--bg); border: 1px solid var(--border);
+  color: var(--text); padding: 11px 14px; border-radius: 10px;
+  font-family: 'Syne', sans-serif; font-size: 14px; outline: none;
+  transition: border-color 0.2s;
+}
+input:focus { border-color: var(--accent); }
+
+.error {
+  background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+  color: #f87171; font-size: 12px; padding: 10px 12px;
+  border-radius: 8px; margin-top: 16px;
+}
+
+button[type=submit] {
+  width: 100%; margin-top: 24px; padding: 13px;
+  background: linear-gradient(135deg, var(--accent), #7c6af8);
+  border: none; border-radius: 10px; color: #fff;
+  font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: opacity 0.2s;
+}
+button[type=submit]:hover { opacity: 0.88; }
+
+.hints { margin-top: 24px; border-top: 1px solid var(--border); padding-top: 18px; }
+.hints p { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--muted);
+  margin-bottom: 4px; }
+.hints code { color: var(--accent2); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">
+    <div class="logo-mark">D</div>
+    <div class="logo-name">Dark<span>IQ</span></div>
+  </div>
+  <h1>Welcome back</h1>
+  <p class="subtitle">AI-Powered Inventory Intelligence Platform</p>
+
+  <form method="POST">
+    <label>Username</label>
+    <input type="text" name="username" autocomplete="username" autofocus>
+    <label>Password</label>
+    <input type="password" name="password" autocomplete="current-password">
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <button type="submit">Sign In →</button>
+  </form>
+
+  <div class="hints">
+    <p><code>admin</code> / admin123 — full access</p>
+    <p><code>manager</code> / manager123 — store manager</p>
+    <p><code>viewer</code> / viewer123 — read only</p>
+  </div>
+</div>
+</body>
+</html>
