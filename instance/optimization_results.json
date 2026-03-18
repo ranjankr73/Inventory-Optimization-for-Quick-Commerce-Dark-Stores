@@ -1,0 +1,551 @@
+{
+  "generated_at": "2026-03-17T15:03:23.269790",
+  "summary": {
+    "baseline_stockout_rate": 0.0,
+    "ai_stockout_rate": 0.0,
+    "stockout_reduction_pp": 0.0,
+    "stockout_reduction_pct": 0.0,
+    "baseline_service_level": 100.0,
+    "ai_service_level": 100.0,
+    "service_level_improvement": 0.0,
+    "baseline_spoilage_units": 25704.0,
+    "ai_spoilage_units": 10707.0,
+    "spoilage_units_saved": 14997.0,
+    "spoilage_reduction_pct": 58.3,
+    "baseline_waste_rate": 4.34,
+    "ai_waste_rate": 1.808,
+    "waste_rate_reduction_pp": 2.532,
+    "spoilage_cost_saved_inr": 721102.0,
+    "baseline_avg_stock_pct": 55.7,
+    "ai_avg_stock_pct": 61.5,
+    "holding_cost_reduction_pct": -11.5,
+    "baseline_inventory_turnover": 8001.24,
+    "ai_inventory_turnover": 7237.73,
+    "turnover_improvement_pct": -9.5,
+    "baseline_fill_rate": 100.0,
+    "ai_fill_rate": 100.0,
+    "fill_rate_improvement": 0.0,
+    "baseline_lost_sales": 64.0,
+    "ai_lost_sales": 13.0,
+    "lost_sales_reduction": 50.0,
+    "lost_sales_reduction_pct": 78.9,
+    "baseline_reorder_events": 7722,
+    "ai_reorder_events": 7069,
+    "total_records_analysed": 43760,
+    "date_range": "2023-01-01 to 2024-06-30",
+    "stores": 4,
+    "skus": 20
+  },
+  "category_breakdown": [
+    {
+      "category": "dairy",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_spoilage": 8335.0,
+      "ai_spoilage": 3593.0,
+      "spoilage_reduction_pct": 56.9,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_waste_rate": 6.05,
+      "ai_waste_rate": 2.61,
+      "baseline_fill_rate": 100.0,
+      "ai_fill_rate": 100.0
+    },
+    {
+      "category": "bakery",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_spoilage": 6862.0,
+      "ai_spoilage": 2625.0,
+      "spoilage_reduction_pct": 61.7,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_waste_rate": 23.51,
+      "ai_waste_rate": 8.99,
+      "baseline_fill_rate": 100.0,
+      "ai_fill_rate": 100.0
+    },
+    {
+      "category": "staples",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_spoilage": 0.0,
+      "ai_spoilage": 0.0,
+      "spoilage_reduction_pct": 0.0,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_waste_rate": 0.0,
+      "ai_waste_rate": 0.0,
+      "baseline_fill_rate": 100.0,
+      "ai_fill_rate": 100.0
+    },
+    {
+      "category": "snacks",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_spoilage": 0.0,
+      "ai_spoilage": 0.0,
+      "spoilage_reduction_pct": 0.0,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_waste_rate": 0.0,
+      "ai_waste_rate": 0.0,
+      "baseline_fill_rate": 100.0,
+      "ai_fill_rate": 100.0
+    },
+    {
+      "category": "beverages",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_spoilage": 0.0,
+      "ai_spoilage": 0.0,
+      "spoilage_reduction_pct": 0.0,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_waste_rate": 0.0,
+      "ai_waste_rate": 0.0,
+      "baseline_fill_rate": 100.0,
+      "ai_fill_rate": 100.0
+    },
+    {
+      "category": "produce",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_spoilage": 10508.0,
+      "ai_spoilage": 4489.0,
+      "spoilage_reduction_pct": 57.3,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_waste_rate": 14.35,
+      "ai_waste_rate": 6.13,
+      "baseline_fill_rate": 100.0,
+      "ai_fill_rate": 100.0
+    }
+  ],
+  "store_breakdown": [
+    {
+      "store_id": "DS_CENTRAL",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_spoilage": 6472.0,
+      "ai_spoilage": 2736.0,
+      "baseline_lost_sales": 18.0,
+      "ai_lost_sales": 0.0,
+      "lost_sales_reduction": 18.0
+    },
+    {
+      "store_id": "DS_EAST",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_spoilage": 7199.0,
+      "ai_spoilage": 2833.0,
+      "baseline_lost_sales": 8.0,
+      "ai_lost_sales": 0.0,
+      "lost_sales_reduction": 8.0
+    },
+    {
+      "store_id": "DS_NORTH",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_spoilage": 5922.0,
+      "ai_spoilage": 2636.0,
+      "baseline_lost_sales": 23.0,
+      "ai_lost_sales": 13.0,
+      "lost_sales_reduction": 10.0
+    },
+    {
+      "store_id": "DS_SOUTH",
+      "baseline_stockout_rate": 0.0,
+      "ai_stockout_rate": 0.0,
+      "stockout_reduction_pp": 0.0,
+      "baseline_service": 100.0,
+      "ai_service": 100.0,
+      "baseline_spoilage": 6111.0,
+      "ai_spoilage": 2502.0,
+      "baseline_lost_sales": 15.0,
+      "ai_lost_sales": 0.0,
+      "lost_sales_reduction": 15.0
+    }
+  ],
+  "weekly_comparison": [
+    {
+      "week": "2023-07-03",
+      "base_avail": 100.0,
+      "base_spoil": 309.1,
+      "ai_avail": 100.0,
+      "ai_spoil": 145.34
+    },
+    {
+      "week": "2023-07-10",
+      "base_avail": 100.0,
+      "base_spoil": 375.21,
+      "ai_avail": 100.0,
+      "ai_spoil": 148.31
+    },
+    {
+      "week": "2023-07-17",
+      "base_avail": 100.0,
+      "base_spoil": 317.76,
+      "ai_avail": 100.0,
+      "ai_spoil": 145.57999999999998
+    },
+    {
+      "week": "2023-07-24",
+      "base_avail": 100.0,
+      "base_spoil": 358.77,
+      "ai_avail": 100.0,
+      "ai_spoil": 143.54
+    },
+    {
+      "week": "2023-07-31",
+      "base_avail": 100.0,
+      "base_spoil": 341.28000000000003,
+      "ai_avail": 100.0,
+      "ai_spoil": 152.91
+    },
+    {
+      "week": "2023-08-07",
+      "base_avail": 100.0,
+      "base_spoil": 369.52,
+      "ai_avail": 100.0,
+      "ai_spoil": 165.53
+    },
+    {
+      "week": "2023-08-14",
+      "base_avail": 100.0,
+      "base_spoil": 354.37,
+      "ai_avail": 100.0,
+      "ai_spoil": 144.99
+    },
+    {
+      "week": "2023-08-21",
+      "base_avail": 100.0,
+      "base_spoil": 397.43,
+      "ai_avail": 100.0,
+      "ai_spoil": 133.03
+    },
+    {
+      "week": "2023-08-28",
+      "base_avail": 100.0,
+      "base_spoil": 305.22,
+      "ai_avail": 100.0,
+      "ai_spoil": 142.92
+    },
+    {
+      "week": "2023-09-04",
+      "base_avail": 100.0,
+      "base_spoil": 353.58,
+      "ai_avail": 100.0,
+      "ai_spoil": 131.62
+    },
+    {
+      "week": "2023-09-11",
+      "base_avail": 100.0,
+      "base_spoil": 358.61,
+      "ai_avail": 100.0,
+      "ai_spoil": 145.99
+    },
+    {
+      "week": "2023-09-18",
+      "base_avail": 100.0,
+      "base_spoil": 337.18,
+      "ai_avail": 100.0,
+      "ai_spoil": 160.64000000000001
+    },
+    {
+      "week": "2023-09-25",
+      "base_avail": 100.0,
+      "base_spoil": 420.83,
+      "ai_avail": 100.0,
+      "ai_spoil": 154.4
+    },
+    {
+      "week": "2023-10-02",
+      "base_avail": 100.0,
+      "base_spoil": 348.43,
+      "ai_avail": 100.0,
+      "ai_spoil": 132.42
+    },
+    {
+      "week": "2023-10-09",
+      "base_avail": 100.0,
+      "base_spoil": 313.72,
+      "ai_avail": 100.0,
+      "ai_spoil": 139.87
+    },
+    {
+      "week": "2023-10-16",
+      "base_avail": 100.0,
+      "base_spoil": 315.38,
+      "ai_avail": 100.0,
+      "ai_spoil": 102.64
+    },
+    {
+      "week": "2023-10-23",
+      "base_avail": 100.0,
+      "base_spoil": 267.3,
+      "ai_avail": 100.0,
+      "ai_spoil": 125.61
+    },
+    {
+      "week": "2023-10-30",
+      "base_avail": 100.0,
+      "base_spoil": 329.56,
+      "ai_avail": 100.0,
+      "ai_spoil": 142.47
+    },
+    {
+      "week": "2023-11-06",
+      "base_avail": 100.0,
+      "base_spoil": 302.28,
+      "ai_avail": 100.0,
+      "ai_spoil": 121.02
+    },
+    {
+      "week": "2023-11-13",
+      "base_avail": 100.0,
+      "base_spoil": 276.54,
+      "ai_avail": 100.0,
+      "ai_spoil": 114.43
+    },
+    {
+      "week": "2023-11-20",
+      "base_avail": 100.0,
+      "base_spoil": 329.34,
+      "ai_avail": 100.0,
+      "ai_spoil": 145.35999999999999
+    },
+    {
+      "week": "2023-11-27",
+      "base_avail": 100.0,
+      "base_spoil": 345.18,
+      "ai_avail": 100.0,
+      "ai_spoil": 134.0
+    },
+    {
+      "week": "2023-12-04",
+      "base_avail": 100.0,
+      "base_spoil": 280.94,
+      "ai_avail": 100.0,
+      "ai_spoil": 144.35
+    },
+    {
+      "week": "2023-12-11",
+      "base_avail": 100.0,
+      "base_spoil": 389.04,
+      "ai_avail": 100.0,
+      "ai_spoil": 146.07
+    },
+    {
+      "week": "2023-12-18",
+      "base_avail": 100.0,
+      "base_spoil": 264.0,
+      "ai_avail": 100.0,
+      "ai_spoil": 149.85
+    },
+    {
+      "week": "2023-12-25",
+      "base_avail": 100.0,
+      "base_spoil": 275.0,
+      "ai_avail": 100.0,
+      "ai_spoil": 113.24
+    },
+    {
+      "week": "2024-01-01",
+      "base_avail": 100.0,
+      "base_spoil": 333.08,
+      "ai_avail": 100.0,
+      "ai_spoil": 143.67
+    },
+    {
+      "week": "2024-01-08",
+      "base_avail": 100.0,
+      "base_spoil": 332.26,
+      "ai_avail": 100.0,
+      "ai_spoil": 140.7
+    },
+    {
+      "week": "2024-01-15",
+      "base_avail": 100.0,
+      "base_spoil": 305.14,
+      "ai_avail": 100.0,
+      "ai_spoil": 141.53
+    },
+    {
+      "week": "2024-01-22",
+      "base_avail": 100.0,
+      "base_spoil": 286.88,
+      "ai_avail": 100.0,
+      "ai_spoil": 131.53
+    },
+    {
+      "week": "2024-01-29",
+      "base_avail": 100.0,
+      "base_spoil": 333.96,
+      "ai_avail": 100.0,
+      "ai_spoil": 134.41
+    },
+    {
+      "week": "2024-02-05",
+      "base_avail": 100.0,
+      "base_spoil": 318.56,
+      "ai_avail": 100.0,
+      "ai_spoil": 110.96000000000001
+    },
+    {
+      "week": "2024-02-12",
+      "base_avail": 100.0,
+      "base_spoil": 317.9,
+      "ai_avail": 100.0,
+      "ai_spoil": 147.98
+    },
+    {
+      "week": "2024-02-19",
+      "base_avail": 100.0,
+      "base_spoil": 286.3,
+      "ai_avail": 100.0,
+      "ai_spoil": 129.61
+    },
+    {
+      "week": "2024-02-26",
+      "base_avail": 100.0,
+      "base_spoil": 357.5,
+      "ai_avail": 100.0,
+      "ai_spoil": 137.98
+    },
+    {
+      "week": "2024-03-04",
+      "base_avail": 100.0,
+      "base_spoil": 332.8,
+      "ai_avail": 100.0,
+      "ai_spoil": 153.75
+    },
+    {
+      "week": "2024-03-11",
+      "base_avail": 100.0,
+      "base_spoil": 373.24,
+      "ai_avail": 100.0,
+      "ai_spoil": 114.65
+    },
+    {
+      "week": "2024-03-18",
+      "base_avail": 100.0,
+      "base_spoil": 318.34,
+      "ai_avail": 100.0,
+      "ai_spoil": 148.61
+    },
+    {
+      "week": "2024-03-25",
+      "base_avail": 100.0,
+      "base_spoil": 322.74,
+      "ai_avail": 100.0,
+      "ai_spoil": 131.78
+    },
+    {
+      "week": "2024-04-01",
+      "base_avail": 100.0,
+      "base_spoil": 325.89,
+      "ai_avail": 100.0,
+      "ai_spoil": 137.66
+    },
+    {
+      "week": "2024-04-08",
+      "base_avail": 100.0,
+      "base_spoil": 334.84,
+      "ai_avail": 100.0,
+      "ai_spoil": 143.92
+    },
+    {
+      "week": "2024-04-15",
+      "base_avail": 100.0,
+      "base_spoil": 317.9,
+      "ai_avail": 100.0,
+      "ai_spoil": 149.32
+    },
+    {
+      "week": "2024-04-22",
+      "base_avail": 100.0,
+      "base_spoil": 324.5,
+      "ai_avail": 100.0,
+      "ai_spoil": 131.05
+    },
+    {
+      "week": "2024-04-29",
+      "base_avail": 100.0,
+      "base_spoil": 352.22,
+      "ai_avail": 100.0,
+      "ai_spoil": 141.43
+    },
+    {
+      "week": "2024-05-06",
+      "base_avail": 100.0,
+      "base_spoil": 305.36,
+      "ai_avail": 100.0,
+      "ai_spoil": 136.54
+    },
+    {
+      "week": "2024-05-13",
+      "base_avail": 100.0,
+      "base_spoil": 341.88,
+      "ai_avail": 100.0,
+      "ai_spoil": 128.52
+    },
+    {
+      "week": "2024-05-20",
+      "base_avail": 100.0,
+      "base_spoil": 353.66,
+      "ai_avail": 100.0,
+      "ai_spoil": 128.91
+    },
+    {
+      "week": "2024-05-27",
+      "base_avail": 100.0,
+      "base_spoil": 339.46,
+      "ai_avail": 100.0,
+      "ai_spoil": 137.75
+    },
+    {
+      "week": "2024-06-03",
+      "base_avail": 100.0,
+      "base_spoil": 343.31,
+      "ai_avail": 100.0,
+      "ai_spoil": 139.97
+    },
+    {
+      "week": "2024-06-10",
+      "base_avail": 100.0,
+      "base_spoil": 336.38,
+      "ai_avail": 100.0,
+      "ai_spoil": 127.62
+    },
+    {
+      "week": "2024-06-17",
+      "base_avail": 100.0,
+      "base_spoil": 344.89,
+      "ai_avail": 100.0,
+      "ai_spoil": 157.05
+    },
+    {
+      "week": "2024-06-24",
+      "base_avail": 100.0,
+      "base_spoil": 346.28,
+      "ai_avail": 100.0,
+      "ai_spoil": 126.28
+    }
+  ]
+}

@@ -361,3 +361,13 @@ if __name__ == "__main__":
     print("DarkIQ v2 starting on http://localhost:5050")
     print("Login: admin/admin123 | manager/manager123 | viewer/viewer123")
     app.run(debug=True, port=5050)
+
+# ── API: Optimization A/B results ─────────────────────────────────────────────
+@app.route("/api/optimization")
+@login_required
+def api_optimization():
+    opt_path = os.path.join(BASE, "instance", "optimization_results.json")
+    if not os.path.exists(opt_path):
+        return jsonify({"error": "Run utils/optimization_analysis.py first"}), 404
+    with open(opt_path) as f:
+        return jsonify(json.load(f))
