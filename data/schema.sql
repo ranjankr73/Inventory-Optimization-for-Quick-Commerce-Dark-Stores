@@ -91,3 +91,7 @@ CREATE TABLE IF NOT EXISTS transfer_log (
 CREATE INDEX IF NOT EXISTS idx_inv_date_store  ON inventory(date, store_id);
 CREATE INDEX IF NOT EXISTS idx_demand_sku_date ON demand_signals(sku_id, date);
 CREATE INDEX IF NOT EXISTS idx_decisions_store ON ai_decisions(store_id, resolved);
+
+ALTER TABLE skus ADD COLUMN holding_cost REAL DEFAULT 0.5;
+ALTER TABLE skus ADD COLUMN shortage_cost REAL DEFAULT 5.0;
+ALTER TABLE skus ADD COLUMN ordering_cost REAL DEFAULT 20.0;

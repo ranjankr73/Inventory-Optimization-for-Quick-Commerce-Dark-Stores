@@ -3,52 +3,23 @@ data/seed_db.py  —  DarkIQ v2
 Generates realistic synthetic data and seeds the SQLite database.
 Run once: python data/seed_db.py
 """
-import sqlite3, os, sys, hashlib, json
+import sqlite3, os, hashlib
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime
 
 np.random.seed(42)
+
 BASE   = os.path.join(os.path.dirname(__file__), "..")
 DB     = os.path.join(BASE, "instance", "darkiq.db")
 SCHEMA = os.path.join(os.path.dirname(__file__), "schema.sql")
 
 # ─── Master data ──────────────────────────────────────────────────────────────
-STORES = [
-    ("DS_NORTH",   "DarkIQ North",   "Lucknow", "North", 26.8500, 80.9500),
-    ("DS_CENTRAL", "DarkIQ Central", "Lucknow", "Central", 26.8467, 80.9462),
-    ("DS_SOUTH",   "DarkIQ South",   "Lucknow", "South", 26.8100, 80.9200),
-    ("DS_EAST",    "DarkIQ East",    "Lucknow", "East",  26.8700, 81.0100),
-]
+STORES = [ ("DS_NORTH","DarkIQ North","Lucknow","North",26.85,80.95), ("DS_CENTRAL","DarkIQ Central","Lucknow","Central",26.8467,80.9462), ("DS_SOUTH","DarkIQ South","Lucknow","South",26.81,80.92), ("DS_EAST","DarkIQ East","Lucknow","East",26.87,81.01), ]
 
-SKUS = [
-    ("SKU001","Fresh Milk 1L",      "dairy",     5,  55,  80,  200, 55,  1),
-    ("SKU002","Bread Loaf",         "bakery",    4,  35,  55,  150, 45,  1),
-    ("SKU003","Eggs 12-pack",       "dairy",    21,  80, 115,  120, 35,  1),
-    ("SKU004","Rice 5kg",           "staples", 365, 250, 340,   80, 20,  0),
-    ("SKU005","Chips & Snacks",     "snacks",   90,  30,  52,  180, 50,  0),
-    ("SKU006","Soft Drinks 6-pack", "beverages",180,120, 185,  160, 45,  0),
-    ("SKU007","Bananas 1kg",        "produce",   5,  40,  65,  100, 30,  1),
-    ("SKU008","Pasta 500g",         "staples", 365,  45,  72,  100, 25,  0),
-    ("SKU009","Yoghurt 400g",       "dairy",    14,  60,  92,   90, 28,  1),
-    ("SKU010","Cooking Oil 1L",     "staples", 365, 130, 188,   70, 18,  0),
-    ("SKU011","Tomatoes 500g",      "produce",   7,  30,  52,  120, 38,  1),
-    ("SKU012","Biscuits Pack",      "snacks",  120,  25,  45,  200, 55,  0),
-    ("SKU013","Mineral Water 1L",   "beverages",365, 15,  32,  300, 80,  0),
-    ("SKU014","Butter 500g",        "dairy",    30,  90, 135,   80, 22,  1),
-    ("SKU015","Instant Noodles",    "staples", 365,  20,  38,  250, 70,  0),
-    ("SKU016","Paneer 200g",        "dairy",     4, 110, 165,   80, 28,  1),
-    ("SKU017","Green Vegetables",   "produce",   3,  25,  45,  100, 35,  1),
-    ("SKU018","Fruit Juice 1L",     "beverages",30,  65, 100,  120, 35,  0),
-    ("SKU019","Atta 5kg",           "staples", 180, 220, 295,   90, 25,  0),
-    ("SKU020","Tea 250g",           "staples", 365,  95, 145,   70, 18,  0),
-]
+SKUS = [ ("SKU001","Fresh Milk 1L","dairy",5,55,80,200,55,1, 0.5,5.0,20.0), ("SKU002","Bread Loaf","bakery",4,35,55,150,45,1, 0.5,5.0,20.0), ("SKU003","Eggs 12-pack","dairy",21,80,115,120,35,1, 0.5,5.0,20.0), ("SKU004","Rice 5kg","staples",365,250,340,80,20,0, 0.5,5.0,20.0), ("SKU005","Chips & Snacks","snacks",90,30,52,180,50,0, 0.5,5.0,20.0), ("SKU006","Soft Drinks","beverages",180,120,185,160,45,0, 0.5,5.0,20.0), ("SKU007","Bananas","produce",5,40,65,100,30,1, 0.5,5.0,20.0), ("SKU008","Pasta","staples",365,45,72,100,25,0, 0.5,5.0,20.0), ("SKU009","Yoghurt","dairy",14,60,92,90,28,1, 0.5,5.0,20.0), ("SKU010","Cooking Oil","staples",365,130,188,70,18,0, 0.5,5.0,20.0), ("SKU011","Tomatoes","produce",7,30,52,120,38,1, 0.5,5.0,20.0), ("SKU012","Biscuits","snacks",120,25,45,200,55,0, 0.5,5.0,20.0), ("SKU013","Water","beverages",365,15,32,300,80,0, 0.5,5.0,20.0), ("SKU014","Butter","dairy",30,90,135,80,22,1, 0.5,5.0,20.0), ("SKU015","Noodles","staples",365,20,38,250,70,0, 0.5,5.0,20.0), ("SKU016","Paneer","dairy",4,110,165,80,28,1, 0.5,5.0,20.0), ("SKU017","Vegetables","produce",3,25,45,100,35,1, 0.5,5.0,20.0), ("SKU018","Juice","beverages",30,65,100,120,35,0, 0.5,5.0,20.0), ("SKU019","Atta","staples",180,220,295,90,25,0, 0.5,5.0,20.0), ("SKU020","Tea","staples",365,95,145,70,18,0, 0.5,5.0,20.0), ]
 
-USERS = [
-    ("admin",   "admin123",   "admin",   None),
-    ("manager", "manager123", "manager", "DS_NORTH"),
-    ("viewer",  "viewer123",  "viewer",  "DS_CENTRAL"),
-]
+USERS = [ ("admin","admin123","admin",None), ("manager","manager123","manager","DS_NORTH"), ("viewer","viewer123","viewer","DS_CENTRAL"), ]
 
 START = datetime(2023, 1, 1)
 END   = datetime(2024, 6, 30)
@@ -107,17 +78,15 @@ def seed():
         cur.executescript(f.read())
 
     # Users
-    for uname, pw, role, store in USERS:
-        cur.execute("INSERT INTO users(username,password,role,store_id) VALUES(?,?,?,?)",
-                    (uname, simple_hash(pw), role, store))
+    for u,p,r,s in USERS: cur.execute( "INSERT INTO users(username,password,role,store_id) VALUES(?,?,?,?)", (u,simple_hash(p),r,s) )
 
     # Stores
     cur.executemany("INSERT INTO stores VALUES(?,?,?,?,?,?,1)", STORES)
 
     # SKUs
-    cur.executemany("INSERT INTO skus VALUES(?,?,?,?,?,?,?,?,?)", SKUS)
-
-    con.commit()
+    cur.executemany( "INSERT INTO skus VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", SKUS ) 
+    con.commit() 
+    print("✓ Database seeded successfully")
 
     # ── Demand + Inventory ──────────────────────────────────────────────────
     print("Generating demand & inventory (this may take ~30s)...")
@@ -128,7 +97,7 @@ def seed():
         store_bias = round(0.82 + np.random.rand()*0.42, 3)
 
         for sku_row in SKUS:
-            sku_id, name, cat, shelf, ucost, sprice, maxs, rop, perish = sku_row
+            sku_id, name, cat, shelf, ucost, sprice, maxs, rop, perish, h, p, k = sku_row
             base  = maxs * (0.055 + np.random.rand()*0.075)
             stock = round(maxs * (0.45 + np.random.rand()*0.45))
             days_in = 0

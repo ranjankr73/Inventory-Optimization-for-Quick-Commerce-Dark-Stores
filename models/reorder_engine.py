@@ -15,18 +15,44 @@ DB   = os.path.join(BASE, "instance", "darkiq.db")
 # ── Data classes ──────────────────────────────────────────────────────────────
 @dataclass
 class SKUState:
-    sku_id: str; name: str; category: str
-    stock: float; max_stock: float; reorder_pt: float
-    shelf_days: int; days_in_stock: int
-    unit_cost: float; sell_price: float
-    store_id: str; is_perishable: int = 0
-    predicted_demand_7d: float = 0.0
+    sku_id: str; 
+    name: str; 
+    category: str;
+    stock: float; 
+    max_stock: float; 
+    reorder_pt: float
+    shelf_days: int; 
+    days_in_stock: int;
+    unit_cost: float; 
+    sell_price: float
+    store_id: str; 
+    is_perishable: int = 0;
+    predicted_demand_7d: float = 0.0;
+    holding_cost: float = 0.5;
+    shortage_cost: float = 5.0;
+    ordering_cost: float = 20.0;
 
 @dataclass
 class Decision:
-    sku_id: str; sku_name: str; store_id: str
-    action: str; urgency: str; qty: float
-    reason: str; cost_impact: float; confidence: float
+    sku_id: str
+    sku_name: str
+    store_id: str
+
+    # ML vs Classical comparison
+    ml_qty: float = 0
+    ml_cost: float = 0
+    classical_qty: float = 0
+    classical_cost: float = 0
+
+    # Decision output
+    action: str = ""
+    urgency: str = ""
+    qty: float = 0
+
+    reason: str = ""
+    cost_impact: float = 0
+    confidence: float = 0
+
     days_cover: float = 0.0
 
 @dataclass
@@ -66,6 +92,27 @@ class ReorderEngine:
         stock = s.stock / max(s.max_stock, 1)
         return min(1.0, age*0.62 + age*stock*0.38)
 
+    def compute_cost(self, Q, D, s: SKUState):
+        holding = s.holding_cost * max(Q - D, 0)
+        shortage = s.shortage_cost * max(D - Q, 0)
+        return holding + shortage
+
+    def classical_q(self, mean, std, service_level=0.95):
+        z = 1.65  # approx for 95%
+        return mean + z * std
+
+    def optimize_q(self, s: SKUState):
+        D = s.predicted_demand_7d
+        std = max(D * 0.2, 1)
+
+        q_values = np.arange(0, s.max_stock + 1, 5)
+        costs = [self.compute_cost(q, D, s) for q in q_values]
+
+        best_q = q_values[np.argmin(costs)]
+        best_cost = min(costs)
+
+        return best_q, best_cost
+    
     def evaluate(self, s: SKUState) -> Decision:
         rop      = self.dynamic_rop(s)
         sp_risk  = self.spoilage_score(s)
@@ -95,8 +142,33 @@ class ReorderEngine:
                     f"Forecast 7d demand: {s.predicted_demand_7d:.0f} units.",
                 round(qty * s.unit_cost, 2), 0.88, days_cov)
 
-        return Decision(s.sku_id, s.name, s.store_id, "ok", "low", 0,
-            f"Healthy — {pct:.0%} stock, {days_cov:.1f}d cover.", 0.0, 0.95, days_cov)
+        # ML optimization
+        q_ml, cost_ml = self.optimize_q(s)
+
+        # Classical model
+        std = max(s.predicted_demand_7d * 0.2, 1)
+        q_classic = self.classical_q(s.predicted_demand_7d, std)
+        cost_classic = self.compute_cost(q_classic, s.predicted_demand_7d, s)
+
+        return Decision(
+    sku_id=s.sku_id,
+    sku_name=s.name,
+    store_id=s.store_id,
+
+    ml_qty=q_ml,
+    ml_cost=cost_ml,
+    classical_qty=q_classic,
+    classical_cost=cost_classic,
+
+    action="ok",
+    urgency="low",
+    qty=0,
+
+    reason=f"Healthy — {pct:.0%} stock, {days_cov:.1f}d cover.",
+    cost_impact=0.0,
+    confidence=0.95,
+    days_cover=days_cov
+)
 
     def recommend_transfers(self, states: List[SKUState]) -> List[Transfer]:
         transfers = []
